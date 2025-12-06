@@ -1,0 +1,139 @@
+{
+    "header": {
+        "title": "Tomoura Forest & Garden Care",
+        "nav": {
+            "services": "Services",
+            "whyChooseUs": "Why Choose Us",
+            "howItWorks": "How It Works",
+            "serviceAreas": "Service Areas",
+            "faq": "FAQ",
+            "contact": "Contact"
+        },
+        "contactButton": "Contact Us"
+    },
+    "hero": {
+        "title": "Professional Tree Care for Gardens and Mountains",
+        "subtitle": "We cut, trim, and take care of trees safely. From private gardens to mountain land.",
+        "ctaQuote": "Get a Free Quote",
+        "ctaServices": "View Services"
+    },
+    "services": {
+        "title": "Our Services",
+        "subtitle": "We provide a wide range of tree care services to meet your needs.",
+        "items": {
+            "garden": {
+                "title": "Garden Tree Cutting & Trimming",
+                "description": "Pruning and cutting trees in private gardens. We ensure your garden looks beautiful and clean."
+            },
+            "mountain": {
+                "title": "Mountain and Slope Tree Cutting",
+                "description": "Specialized equipment for difficult terrains. We handle large scale forestry work safely."
+            },
+            "dangerous": {
+                "title": "Dangerous or Fallen Trees",
+                "description": "Emergency removal of trees that pose a risk to property or people. Available for urgent calls."
+            },
+            "care": {
+                "title": "Regular Care Plan",
+                "description": "Scheduled maintenance to keep your trees healthy and safe year-round."
+            }
+        }
+    },
+    "whyChooseUs": {
+        "title": "Why Choose Us",
+        "subtitle": "We are dedicated to providing the best service with safety and quality.",
+        "items": {
+            "versatile": {
+                "title": "We handle both gardens and mountains",
+                "description": "From a single garden tree to a whole mountain forest, we have the expertise and equipment."
+            },
+            "safety": {
+                "title": "Safety first in every job",
+                "description": "We strictly follow safety protocols to protect our workers, your property, and the environment."
+            },
+            "pricing": {
+                "title": "Clear and fair pricing",
+                "description": "We provide detailed quotes before starting any work. No hidden fees or surprises."
+            }
+        }
+    },
+    "howItWorks": {
+        "title": "How It Works",
+        "subtitle": "Simple steps to get your trees taken care of.",
+        "steps": {
+            "contact": {
+                "title": "Contact Us",
+                "description": "Fill out the form or call us."
+            },
+            "check": {
+                "title": "On-site check",
+                "description": "We visit to assess the situation."
+            },
+            "quote": {
+                "title": "Quote",
+                "description": "We provide a free estimate."
+            },
+            "work": {
+                "title": "Work begins",
+                "description": "We perform the job safely."
+            },
+            "support": {
+                "title": "After-service",
+                "description": "We ensure you are satisfied."
+            }
+        }
+    },
+    "serviceAreas": {
+        "title": "Service Areas",
+        "description": "We serve local cities and surrounding areas. Contact us to check if your location is available.",
+        "cta": "Check Availability"
+    },
+    "faq": {
+        "title": "Frequently Asked Questions",
+        "items": [
+            {
+                "question": "Do you offer free quotes?",
+                "answer": "Yes, we offer free on-site estimates for all our services."
+            },
+            {
+                "question": "Can you handle tall trees?",
+                "answer": "Absolutely. We have specialized equipment for high tree climbing and cutting."
+            },
+            {
+                "question": "Do you remove the waste?",
+                "answer": "Yes, we can remove all branches and logs, or leave them for firewood if you prefer."
+            }
+        ]
+    },
+    "contact": {
+        "title": "Contact Us",
+        "subtitle": "Send us a message for a free quote.",
+        "form": {
+            "name": "Name",
+            "email": "Email",
+            "phone": "Phone",
+            "address": "Address / Location",
+            "serviceType": "Type of Service",
+            "message": "Message",
+            "submit": "Send",
+            "sending": "Sending...",
+            "success": "Thank you! Your email client should open now.",
+            "serviceOptions": {
+                "garden": "Garden Tree Cutting & Trimming",
+                "mountain": "Mountain and Slope Tree Cutting",
+                "dangerous": "Dangerous or Fallen Trees",
+                "care": "Regular Care Plan",
+                "other": "Other"
+            }
+        }
+    },
+    "footer": {
+        "companyName": "Tomoura Forest & Garden Care",
+        "description": "Professional tree care for gardens and mountains.",
+        "links": {
+            "services": "Services",
+            "contact": "Contact"
+        },
+        "copyright": "© {year} Tomoura Forest & Garden Care. All rights reserved."
+    }
+}

@@ -1,0 +1,139 @@
+{
+    "header": {
+        "title": "友浦フォレスト＆ガーデンケア",
+        "nav": {
+            "services": "サービス内容",
+            "whyChooseUs": "選ばれる理由",
+            "howItWorks": "ご利用の流れ",
+            "serviceAreas": "対応エリア",
+            "faq": "よくある質問",
+            "contact": "お問い合わせ"
+        },
+        "contactButton": "お問い合わせ"
+    },
+    "hero": {
+        "title": "お庭から山林まで\n木の伐採・管理は\nお任せください",
+        "subtitle": "安全第一で丁寧に作業いたします。\n個人のお庭の手入れから、山林の伐採まで幅広く対応。",
+        "ctaQuote": "無料お見積り",
+        "ctaServices": "サービスを見る"
+    },
+    "services": {
+        "title": "サービス内容",
+        "subtitle": "お客様のニーズに合わせた幅広いサービスをご提供します。",
+        "items": {
+            "garden": {
+                "title": "庭木の伐採・剪定",
+                "description": "個人宅のお庭の木を剪定・伐採します。美しく清潔なお庭を保ちます。"
+            },
+            "mountain": {
+                "title": "山林・斜面の伐採",
+                "description": "特殊機材を使用し、困難な地形でも対応。大規模な林業作業も安全に行います。"
+            },
+            "dangerous": {
+                "title": "危険木・倒木の処理",
+                "description": "建物や人に危険を及ぼす木の緊急撤去。急なご依頼にも対応いたします。"
+            },
+            "care": {
+                "title": "定期管理プラン",
+                "description": "年間を通じて樹木の健康と安全を維持するための定期的なメンテナンス。"
+            }
+        }
+    },
+    "whyChooseUs": {
+        "title": "選ばれる理由",
+        "subtitle": "安全と品質にこだわり、最高のサービスを提供します。",
+        "items": {
+            "versatile": {
+                "title": "お庭も山も対応可能",
+                "description": "庭木一本から山林全体まで、豊富な経験と機材で対応いたします。"
+            },
+            "safety": {
+                "title": "徹底した安全管理",
+                "description": "作業員、お客様の財産、そして環境を守るため、厳格な安全基準を遵守しています。"
+            },
+            "pricing": {
+                "title": "明朗会計",
+                "description": "作業前に詳細なお見積りを提示いたします。追加料金や隠れた費用は一切ありません。"
+            }
+        }
+    },
+    "howItWorks": {
+        "title": "ご利用の流れ",
+        "subtitle": "お問い合わせから作業完了までの簡単なステップ。",
+        "steps": {
+            "contact": {
+                "title": "お問い合わせ",
+                "description": "フォームまたはお電話で。"
+            },
+            "check": {
+                "title": "現地調査",
+                "description": "状況を確認に伺います。"
+            },
+            "quote": {
+                "title": "お見積り",
+                "description": "無料で作成いたします。"
+            },
+            "work": {
+                "title": "作業開始",
+                "description": "安全に作業を行います。"
+            },
+            "support": {
+                "title": "アフターフォロー",
+                "description": "完了後も安心です。"
+            }
+        }
+    },
+    "serviceAreas": {
+        "title": "対応エリア",
+        "description": "近隣市町村および周辺地域に対応しています。詳細はお問い合わせください。",
+        "cta": "対応エリアを確認"
+    },
+    "faq": {
+        "title": "よくある質問",
+        "items": [
+            {
+                "question": "見積もりは無料ですか？",
+                "answer": "はい、現地調査とお見積りは完全に無料で行っております。"
+            },
+            {
+                "question": "高い木でも対応できますか？",
+                "answer": "もちろんです。高所作業用の特殊機材を使用し、安全に伐採可能です。"
+            },
+            {
+                "question": "切った木の処分もお願いできますか？",
+                "answer": "はい、枝や幹の回収・処分も承ります。薪として残すことも可能です。"
+            }
+        ]
+    },
+    "contact": {
+        "title": "お問い合わせ",
+        "subtitle": "無料お見積りはこちらからメッセージをお送りください。",
+        "form": {
+            "name": "お名前",
+            "email": "メールアドレス",
+            "phone": "電話番号",
+            "address": "ご住所 / 場所",
+            "serviceType": "ご希望のサービス",
+            "message": "メッセージ",
+            "submit": "送信する",
+            "sending": "送信中...",
+            "success": "ありがとうございます！メーラーが起動しますので、そのまま送信してください。",
+            "serviceOptions": {
+                "garden": "庭木の伐採・剪定",
+                "mountain": "山林・斜面の伐採",
+                "dangerous": "危険木・倒木の処理",
+                "care": "定期管理プラン",
+                "other": "その他"
+            }
+        }
+    },
+    "footer": {
+        "companyName": "友浦フォレスト＆ガーデンケア",
+        "description": "お庭から山林まで、プロの技術で木をケアします。",
+        "links": {
+            "services": "サービス",
+            "contact": "お問い合わせ"
+        },
+        "copyright": "© {year} Tomoura Forest & Garden Care. All rights reserved."
+    }
+}
