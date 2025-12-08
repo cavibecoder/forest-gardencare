@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import Header from "../components/Header";
 import Footer from "../components/Footer";
+import Chatbot from "../components/Chatbot";
 import { i18n, type Locale } from "../i18n-config";
 import { getDictionary } from "../get-dictionary";
 
@@ -43,6 +44,7 @@ export default async function RootLayout({
         <Header dict={dict} lang={lang as Locale} />
         {children}
         <Footer dict={dict} />
+        <Chatbot />
       </body>
     </html>
   );
