@@ -3,58 +3,56 @@
 
 import { useState, useRef, useEffect } from "react";
 import { type Locale } from "../i18n-config";
-
-type Message = {
-  id: number;
-  text: string;
-  sender: "user" | "bot";
-};
+import { useChat } from "@ai-sdk/react";
 
 const translations = {
   ja: {
     title: "チャットサポート",
     placeholder: "メッセージを入力...",
     initial: "こんにちは！お庭や山林の手入れについて、何かお手伝いできることはありますか？",
-    askContact: "ありがとうございます。具体的なお見積もりのために、お客様の【お名前】と【電話番号】を教えていただけますか？",
-    thankYou: "ご連絡先をいただき、ありがとうございます！担当者が内容を確認し、近日中に折り返しご連絡いたします。",
-    final: "その他ご不明な点がございましたら、お気軽にお申し付けください。",
   },
   en: {
     title: "Chat Support",
     placeholder: "Type a message...",
     initial: "Hello! How can we help you with your garden today?",
-    askContact: "Thank you. To provide a quote, please tell us your Name and Phone Number.",
-    thankYou: "Thank you! We received your info and will contact you shortly.",
-    final: "If you have any other questions, feel free to ask.",
   },
 };
 
 export default function Chatbot({ lang }: { lang: Locale }) {
   const t = translations[lang] || translations.ja;
   const [isOpen, setIsOpen] = useState(false);
+
+  const { messages, sendMessage, error, setMessages } = useChat();
+
   const [input, setInput] = useState("");
-  const [messages, setMessages] = useState<Message[]>([
-    {
-      id: 1,
-      text: t.initial,
-      sender: "bot",
-    },
-  ]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInput(e.target.value);
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!input.trim()) return;
+
+    sendMessage({ role: "user", content: input } as any);
+    setInput("");
+  };
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const [chatStep, setChatStep] = useState(0);
-
-  // Reset chat when language changes
+  // Set initial welcome message and reset chat when language changes
   useEffect(() => {
+    // This effect runs on initial mount and when `lang` or `t.initial` changes.
+    // It ensures the chat starts with the correct welcome message for the current language.
     setMessages([
       {
-        id: 1,
-        text: t.initial,
-        sender: "bot",
+        id: "welcome",
+        role: "assistant", // Use 'assistant' for bot
+        content: t.initial,
       },
-    ]);
-    setChatStep(0);
-  }, [lang]);
+    ] as any);
+  }, [lang, setMessages, t.initial]);
+
 
   const toggleChat = () => setIsOpen(!isOpen);
 
@@ -65,44 +63,6 @@ export default function Chatbot({ lang }: { lang: Locale }) {
   useEffect(() => {
     scrollToBottom();
   }, [messages, isOpen]);
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    if (!input.trim()) return;
-
-    const userMessage: Message = {
-      id: Date.now(),
-      text: input,
-      sender: "user",
-    };
-
-    setMessages((prev) => [...prev, userMessage]);
-    setInput("");
-
-    // Bot response logic based on step
-    setTimeout(() => {
-      let botText = "";
-      let nextStep = chatStep;
-
-      if (chatStep === 0) {
-        botText = t.askContact;
-        nextStep = 1;
-      } else if (chatStep === 1) {
-        botText = t.thankYou;
-        nextStep = 2;
-      } else {
-        botText = t.final;
-      }
-
-      const botResponse: Message = {
-        id: Date.now() + 1,
-        text: botText,
-        sender: "bot",
-      };
-      setMessages((prev) => [...prev, botResponse]);
-      setChatStep(nextStep);
-    }, 1000);
-  };
 
   return (
     <>
@@ -178,16 +138,16 @@ export default function Chatbot({ lang }: { lang: Locale }) {
               {messages.map((msg) => (
                 <div
                   key={msg.id}
-                  className={`flex ${msg.sender === "user" ? "justify-end" : "justify-start"
+                  className={`flex ${msg.role === "user" ? "justify-end" : "justify-start"
                     } `}
                 >
                   <div
-                    className={`max - w - [80 %] rounded - lg px - 4 py - 2 text - sm ${msg.sender === "user"
+                    className={`max-w-[80%] rounded-lg px-4 py-2 text-sm ${msg.role === "user"
                       ? "bg-green-600 text-white"
                       : "bg-white text-gray-800 shadow-sm border border-gray-100"
-                      } `}
+                      }`}
                   >
-                    {msg.text}
+                    {(msg as any).content}
                   </div>
                 </div>
               ))}
@@ -204,7 +164,7 @@ export default function Chatbot({ lang }: { lang: Locale }) {
               <input
                 type="text"
                 value={input}
-                onChange={(e) => setInput(e.target.value)}
+                onChange={handleInputChange}
                 placeholder={t.placeholder}
                 className="flex-1 rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
               />
