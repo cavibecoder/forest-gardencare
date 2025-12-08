@@ -44,7 +44,7 @@ export default async function RootLayout({
         <Header dict={dict} lang={lang as Locale} />
         {children}
         <Footer dict={dict} />
-        <Chatbot />
+        <Chatbot lang={lang as Locale} />
       </body>
     </html>
   );

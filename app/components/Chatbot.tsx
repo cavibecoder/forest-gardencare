@@ -2,6 +2,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { type Locale } from "../i18n-config";
 
 type Message = {
   id: number;
@@ -9,19 +10,51 @@ type Message = {
   sender: "user" | "bot";
 };
 
-export default function Chatbot() {
+const translations = {
+  ja: {
+    title: "チャットサポート",
+    placeholder: "メッセージを入力...",
+    initial: "こんにちは！お庭や山林の手入れについて、何かお手伝いできることはありますか？",
+    askContact: "ありがとうございます。具体的なお見積もりのために、お客様の【お名前】と【電話番号】を教えていただけますか？",
+    thankYou: "ご連絡先をいただき、ありがとうございます！担当者が内容を確認し、近日中に折り返しご連絡いたします。",
+    final: "その他ご不明な点がございましたら、お気軽にお申し付けください。",
+  },
+  en: {
+    title: "Chat Support",
+    placeholder: "Type a message...",
+    initial: "Hello! How can we help you with your garden today?",
+    askContact: "Thank you. To provide a quote, please tell us your Name and Phone Number.",
+    thankYou: "Thank you! We received your info and will contact you shortly.",
+    final: "If you have any other questions, feel free to ask.",
+  },
+};
+
+export default function Chatbot({ lang }: { lang: Locale }) {
+  const t = translations[lang] || translations.ja;
   const [isOpen, setIsOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([
     {
       id: 1,
-      text: "こんにちは！お庭や山林の手入れについて、何かお手伝いできることはありますか？",
+      text: t.initial,
       sender: "bot",
     },
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const [chatStep, setChatStep] = useState(0);
+
+  // Reset chat when language changes
+  useEffect(() => {
+    setMessages([
+      {
+        id: 1,
+        text: t.initial,
+        sender: "bot",
+      },
+    ]);
+    setChatStep(0);
+  }, [lang]);
 
   const toggleChat = () => setIsOpen(!isOpen);
 
@@ -52,13 +85,13 @@ export default function Chatbot() {
       let nextStep = chatStep;
 
       if (chatStep === 0) {
-        botText = "ありがとうございます。具体的なお見積もりのために、お客様の【お名前】と【電話番号】を教えていただけますか？";
+        botText = t.askContact;
         nextStep = 1;
       } else if (chatStep === 1) {
-        botText = "ご連絡先をいただき、ありがとうございます！担当者が内容を確認し、近日中に折り返しご連絡いたします。";
+        botText = t.thankYou;
         nextStep = 2;
       } else {
-        botText = "その他ご不明な点がございましたら、お気軽にお申し付けください。";
+        botText = t.final;
       }
 
       const botResponse: Message = {
@@ -117,7 +150,7 @@ export default function Chatbot() {
         <div className="fixed bottom-24 right-5 z-50 flex h-[500px] w-[350px] flex-col rounded-xl bg-white shadow-2xl ring-1 ring-black/5 sm:right-5">
           {/* Header */}
           <div className="flex items-center justify-between rounded-t-xl bg-green-700 px-4 py-3 text-white">
-            <h3 className="font-bold">Chat Support</h3>
+            <h3 className="font-bold">{t.title}</h3>
             <button
               onClick={toggleChat}
               className="rounded p-1 hover:bg-green-600"
@@ -172,7 +205,7 @@ export default function Chatbot() {
                 type="text"
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                placeholder="メッセージを入力..."
+                placeholder={t.placeholder}
                 className="flex-1 rounded-full border border-gray-300 bg-gray-50 px-4 py-2 text-sm focus:border-green-500 focus:outline-none focus:ring-1 focus:ring-green-500"
               />
               <button
