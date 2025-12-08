@@ -21,6 +21,8 @@ export default function Chatbot() {
   ]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
+  const [chatStep, setChatStep] = useState(0);
+
   const toggleChat = () => setIsOpen(!isOpen);
 
   const scrollToBottom = () => {
@@ -44,14 +46,28 @@ export default function Chatbot() {
     setMessages((prev) => [...prev, userMessage]);
     setInput("");
 
-    // Simulate bot response
+    // Bot response logic based on step
     setTimeout(() => {
+      let botText = "";
+      let nextStep = chatStep;
+
+      if (chatStep === 0) {
+        botText = "ありがとうございます。具体的なお見積もりのために、お客様の【お名前】と【電話番号】を教えていただけますか？";
+        nextStep = 1;
+      } else if (chatStep === 1) {
+        botText = "ご連絡先をいただき、ありがとうございます！担当者が内容を確認し、近日中に折り返しご連絡いたします。";
+        nextStep = 2;
+      } else {
+        botText = "その他ご不明な点がございましたら、お気軽にお申し付けください。";
+      }
+
       const botResponse: Message = {
         id: Date.now() + 1,
-        text: "お問い合わせありがとうございます。担当者が確認次第、ご連絡いたします。",
+        text: botText,
         sender: "bot",
       };
       setMessages((prev) => [...prev, botResponse]);
+      setChatStep(nextStep);
     }, 1000);
   };
 
