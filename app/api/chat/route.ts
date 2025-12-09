@@ -9,6 +9,20 @@ const openai = createOpenAI({
 
 export async function POST(req: Request) {
     try {
+        // Validate API key exists
+        if (!process.env.OPENAI_API_KEY) {
+            console.error('OPENAI_API_KEY is not set in environment variables');
+            return new Response(
+                JSON.stringify({
+                    error: 'Server configuration error: OpenAI API key is not configured. Please contact support.'
+                }),
+                {
+                    status: 500,
+                    headers: { 'Content-Type': 'application/json' },
+                }
+            );
+        }
+
         const { messages }: { messages: UIMessage[] } = await req.json();
 
         const result = streamText({
