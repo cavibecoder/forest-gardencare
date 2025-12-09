@@ -13,8 +13,8 @@ export async function POST(req: Request) {
     You speak both English and Japanese comfortably. Detect the user's language and respond in the same language.
     
     Company Information:
-    - Location: Based in Imabari City, Aichi Prefecture (愛知県今治市に拠点を置いています)
-    - Service Area: Primarily serving Aichi Prefecture and surrounding areas (主に愛知県を中心にサービスを提供しています)
+    - Location: Based in Imabari City, Ehime Prefecture (愛媛県今治市に拠点を置いています)
+    - Service Area: Primarily serving Ehime Prefecture and surrounding areas (主に愛媛県を中心にサービスを提供しています)
     - Note: Some specific areas may be difficult to serve, so encourage customers to contact us for detailed service area confirmation
     
     Services we offer:
