@@ -1,7 +1,11 @@
-import { openai } from '@ai-sdk/openai';
+import { createOpenAI } from '@ai-sdk/openai';
 import { streamText, convertToModelMessages, UIMessage } from 'ai';
 
 export const maxDuration = 30;
+
+const openai = createOpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+});
 
 export async function POST(req: Request) {
     try {
