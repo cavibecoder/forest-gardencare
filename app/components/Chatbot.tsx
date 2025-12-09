@@ -34,7 +34,7 @@ export default function Chatbot({ lang }: { lang: Locale }) {
     e.preventDefault();
     if (!input.trim()) return;
 
-    sendMessage({ role: "user", content: input } as any);
+    sendMessage({ text: input });
     setInput("");
   };
 
@@ -47,8 +47,8 @@ export default function Chatbot({ lang }: { lang: Locale }) {
     setMessages([
       {
         id: "welcome",
-        role: "assistant", // Use 'assistant' for bot
-        content: t.initial,
+        role: "assistant",
+        parts: [{ type: "text", text: t.initial }],
       },
     ] as any);
   }, [lang, setMessages, t.initial]);
@@ -147,10 +147,21 @@ export default function Chatbot({ lang }: { lang: Locale }) {
                       : "bg-white text-gray-800 shadow-sm border border-gray-100"
                       }`}
                   >
-                    {(msg as any).content}
+                    {(msg as any).parts?.map((part: any, index: number) =>
+                      part.type === "text" ? (
+                        <span key={index}>{part.text}</span>
+                      ) : null
+                    )}
                   </div>
                 </div>
               ))}
+              {error && (
+                <div className="flex justify-start">
+                  <div className="max-w-[80%] rounded-lg px-4 py-2 text-sm bg-red-50 text-red-600 border border-red-100">
+                    Error: {error.message}
+                  </div>
+                </div>
+              )}
               <div ref={messagesEndRef} />
             </div>
           </div>

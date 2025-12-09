@@ -1,14 +1,15 @@
 import { openai } from '@ai-sdk/openai';
-import { streamText } from 'ai';
+import { streamText, convertToModelMessages, UIMessage } from 'ai';
 
 export const maxDuration = 30;
 
 export async function POST(req: Request) {
-    const { messages } = await req.json();
+    try {
+        const { messages }: { messages: UIMessage[] } = await req.json();
 
-    const result = streamText({
-        model: openai('gpt-4o'),
-        system: `You are a helpful and friendly AI assistant for "Forestry & Garden Care" (Tomoura Forest & Garden Care).
+        const result = streamText({
+            model: openai('gpt-4o'),
+            system: `You are a helpful and friendly AI assistant for "Forestry & Garden Care" (Tomoura Forest & Garden Care).
     You speak both English and Japanese comfortably. Detect the user's language and respond in the same language.
     
     Services we offer:
@@ -21,8 +22,15 @@ export async function POST(req: Request) {
     
     If asked for a quote, ask for their Name and Phone Number so a representative can contact them.
     `,
-        messages,
-    });
+            messages: convertToModelMessages(messages),
+        });
 
-    return result.toTextStreamResponse();
+        return result.toUIMessageStreamResponse();
+    } catch (error) {
+        console.error("Chat API Error:", error);
+        return new Response(JSON.stringify({ error: "Failed to process chat request" }), {
+            status: 500,
+            headers: { "Content-Type": "application/json" },
+        });
+    }
 }
